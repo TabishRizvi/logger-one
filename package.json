@@ -1,6 +1,6 @@
 {
   "name": "logger-one",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Logger middleware for express",
   "main": "index.js",
   "scripts": {

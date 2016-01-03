@@ -14,18 +14,18 @@ var logThis = function(isError,value){
 
 var init = function(initObject){
 
-    var request = ( typeof initObject.request!="undefined")?initObject.request: true;
+    var request = (initObject &&  initObject.request!=undefined)?initObject.request: true;
     var requestData = {
-        body: (initObject.requestData && typeof initObject.requestData.body!="undefined")?initObject.requestData.body : true,
-        params: (initObject.requestData && typeof initObject.requestData.params!="undefined")?initObject.requestData.params : true,
-        query: (initObject.requestData && typeof initObject.requestData.query!="undefined")?initObject.requestData.query : true,
-        headers: (initObject.requestData && typeof initObject.requestData.headers !="undefined")?initObject.requestData.headers : true
+        body: (initObject &&  initObject.requestData && initObject.requestData.body!=undefined)?initObject.requestData.body : true,
+        params: (initObject &&  initObject.requestData && initObject.requestData.params!=undefined)?initObject.requestData.params : true,
+        query: (initObject &&  initObject.requestData &&  initObject.requestData.query!=undefined)?initObject.requestData.query : true,
+        headers: (initObject &&  initObject.requestData &&  initObject.requestData.headers !=undefined)?initObject.requestData.headers : true
     };
-    var response = ( typeof initObject.response!="undefined")?initObject.response : true;
+    var response = ( initObject &&   initObject.response!=undefined)?initObject.response : true;
     var responseData = {
-        status:(initObject.responseData && typeof initObject.responseData.status!="undefined")? initObject.responseData.status : true,
-        body:(initObject.responseData && typeof initObject.responseData.body!="undefined")? initObject.responseData.body : true,
-        responseTime:(initObject.responseData && typeof initObject.responseData.responseTime!="undefined")? initObject.responseData.responseTime : true
+        status:(initObject &&  initObject.responseData && typeof initObject.responseData.status!=undefined)? initObject.responseData.status : true,
+        body:(initObject &&  initObject.responseData && typeof initObject.responseData.body!=undefined)? initObject.responseData.body : true,
+        responseTime:(initObject &&  initObject.responseData && typeof initObject.responseData.responseTime!=undefined)? initObject.responseData.responseTime : true
     };
 
     return function(req,res,next){
