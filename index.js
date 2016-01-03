@@ -29,7 +29,7 @@ var init = function(initObject){
         };
 
         if(!req.app.count){
-            req.app.count  = 1;
+            req.app.count  = 0;
 
         }
 
@@ -38,6 +38,9 @@ var init = function(initObject){
 
         res.end = function(chunk,encoding) {
             oldResEnd.apply(res, arguments);
+
+
+            req.app.count++;
 
 
             console.log(chalk['bgWhite'].black.bold("================logger-one================"));
@@ -100,13 +103,6 @@ var init = function(initObject){
 
 
 
-
-
-
-
-
-
-        req.app.count++;
         next();
     }
 };
