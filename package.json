@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TabishRizvi/logger-one#readme",
   "dependencies": {
-    "chalk": "^1.1.1"
+    "chalk": "^1.1.1",
+    "md5": "^2.0.0"
   }
 }

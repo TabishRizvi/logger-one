@@ -2,7 +2,15 @@
  * Created by tabishrizvi on 03/01/16.
  */
 
-var chalk = require('chalk')
+var chalk = require('chalk'),
+    md5 = require('md5');
+
+
+
+var logThis = function(isError,value){
+
+    console.log(chalk[isError?'red':'green'].bold(value));
+};
 
 var init = function(initObject){
 
@@ -41,60 +49,58 @@ var init = function(initObject){
 
 
             req.app.count++;
+            var isError = res.statusCode>=400;
 
+            logThis(isError,"================logger-one================");
+            logThis(isError,"LOG ID. : "+ md5(req.loggerOne.startTime.toISOString()));
+            logThis(isError,"DATETIME : "+req.loggerOne.startTime);
+            logThis(isError,"METHOD : "+req.method);
+            logThis(isError,'URL : '+req.url);
 
-            console.log(chalk['bgWhite'].black.bold("================logger-one================"));
-            console.log(chalk.bgGreen.black.bold("LOG NO. : "+req.app.count));
-            console.log(chalk.bgGreen.black.bold("DATETIME : "+new Date()));
-
-            console.log(chalk.bgGreen.black.bold("METHOD : "+req.method));
-            console.log(chalk.bgGreen.black.bold('URL : '+req.url));
 
             if(request){
-                console.log(chalk.bgGreen.black.bold('REQUEST'));
+
+                logThis(isError,'\nREQUEST');
 
                 if(requestData.headers) {
-                    console.log(chalk.bgGreen.black.bold('\tHEADERS'));
-                    console.log(chalk.bgGreen.black.bold("\t\t" + JSON.stringify(req.headers)));
+                    logThis(isError,'\n\tHEADERS');
+                    logThis(isError,"\t\t" + JSON.stringify(req.headers));
                 }
 
                 if(requestData.body) {
-                    console.log(chalk.bgGreen.black.bold('\tBODY'));
-                    console.log(chalk.bgGreen.black.bold("\t\t" + JSON.stringify(req.body)));
+                    logThis(isError,'\n\tBODY');
+                    logThis(isError,"\t\t" + JSON.stringify(req.body));
                 }
 
                 if(requestData.params) {
-                    console.log(chalk.bgGreen.black.bold('\tPATH PARAMETERS'));
-                    console.log(chalk.bgGreen.black.bold("\t\t" + JSON.stringify(req.params)));
+                    logThis(isError,'\n\tPATH PARAMETERS');
+                    logThis(isError,"\t\t" + JSON.stringify(req.params));
                 }
 
                 if(requestData.query) {
-                    console.log(chalk.bgGreen.black.bold('\tQUERY PARAMETERS'));
-                    console.log(chalk.bgGreen.black.bold("\t\t" + JSON.stringify(req.query)));
+                    logThis(isError,'\n\tQUERY PARAMETERS');
+                    logThis(isError,"\t\t" + JSON.stringify(req.query));
                 }
             }
 
             if(response){
-                var responseBgColor = res.statusCode>=400?'bgRed':'bgGreen';
-
-
-                console.log(chalk[responseBgColor].black.bold('RESPONSE'));
+                logThis(isError,'\nRESPONSE');
 
                 if(responseData.status) {
-                    console.log(chalk[responseBgColor].black.bold('\tSTATUS CODE'));
-                    console.log(chalk[responseBgColor].black.bold("\t\t" + res.statusCode));
+                    logThis(isError,'\n\tSTATUS CODE');
+                    logThis(isError,"\t\t" + res.statusCode);
                 }
 
                 if(responseData.body) {
-                    console.log(chalk[responseBgColor].black.bold('\tBODY'));
-                    console.log(chalk[responseBgColor].black.bold("\t\t" + chunk.toString(encoding)));
+                    logThis(isError,'\n\tBODY');
+                    logThis(isError,"\t\t" + chunk.toString(encoding));
                 }
 
                 if(responseData.responseTime)
                 {
                     req.loggerOne.endTime = new Date();
                     var duration =req.loggerOne.endTime.getTime() - req.loggerOne.startTime.getTime();
-                    console.log(chalk[responseBgColor].black.bold('RESPONSE TIME :' + duration + ' ms'));
+                    logThis(isError,'\nRESPONSE TIME :' + duration + ' ms\n');
                 }
 
             }
