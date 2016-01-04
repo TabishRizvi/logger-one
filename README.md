@@ -7,11 +7,17 @@
 
 ## Installation
 
-```bashp
+```sh
 npm install logger-one
 ```
 
 ## API
+
+
+```js
+var loggerOne = require('logger-one')
+```
+
 There are two different ways to use logger-one :
 
 *  [Simple Usage](#simple-usage)
@@ -20,8 +26,44 @@ There are two different ways to use logger-one :
 
 ### Simple Usage
 
-Logging levels in `winston` conform to the severity ordering specified by [RFC5424](https://tools.ietf.org/html/rfc5424): _severity of all levels is assumed to be numerically **ascending** from most important to least important._
+``` js
+app.use(loggerOne());
+```
 
 ### With options
-The default logger is accessible through the winston module directly. Any method that you could call on an instance of a logger is available on the default logger:
+
+
+``` js
+app.use(loggerOne({
+	request:true,
+	requestData:{
+		headers:false,
+		body:true,
+		params:true,
+		query:true
+	},
+	response:true,
+	responseData:{
+		status:true,
+		body:true,
+		responseTime:false
+	}
+}));
+```
+
+> **Note :**
+>
+ > - #### ***looger-one*** middleware must be loaded  only after ***body-parser*** has been used
+ >
+
+ > - #### All the initialisation parameters are optional and by default are set ***true***
+
+
+## AUTHOR
+
+**Tabish Rizvi (<a href="mailto:sayyidtabish@gmail.com">sayyidtabish@gmail.com</a>)**
+
+##LICENSE
+
+**MIT**
 
