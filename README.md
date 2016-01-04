@@ -53,10 +53,10 @@ app.use(loggerOne({
 
 > **Note :**
 >
- > - #### ***looger-one*** middleware must be loaded  only after ***body-parser*** has been used
+ > - ##### ***looger-one*** middleware must be loaded  only after ***body-parser*** has been used
  >
 
- > - #### All the initialisation parameters are optional and by default are set ***true***
+ > - ##### All the initialisation parameters are optional and by default are set ***true***
 
 
 ## AUTHOR
