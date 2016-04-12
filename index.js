@@ -55,7 +55,7 @@ var init = function(initObject){
             logThis(isError,"LOG ID. : "+ md5(req.loggerOne.startTime.toISOString()));
             logThis(isError,"DATETIME : "+req.loggerOne.startTime);
             logThis(isError,"METHOD : "+req.method);
-            logThis(isError,'URL : '+req.url);
+            logThis(isError,'URL : '+req.originalUrl);
 
 
             if(request){
