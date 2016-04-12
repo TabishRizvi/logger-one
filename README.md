@@ -58,6 +58,12 @@ app.use(loggerOne({
 
  > - ##### All the initialisation parameters are optional and by default are set ***true***
 
+> **Version 1.1.3 :**
+>
+ > - ##### ***Request URL bug fixed*** thanks to   **Nitin Padgotra (<a href="mailto:nitinhitman47@gmail.com">nitinhitman47@gmail.com</a>)**
+ >
+
+
 
 ## AUTHOR
 
